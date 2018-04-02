@@ -14,7 +14,6 @@ namespace DSBST.Containers
         public BinarySearchTreeNode(T val)
         {
             Value = val;
-            System.Console.WriteLine(Value);
         }
 
         public bool HasParent => Parent != null;
