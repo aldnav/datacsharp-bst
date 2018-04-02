@@ -6,14 +6,15 @@ namespace DSBST.Containers
     public enum Traversal { PreOrder, InOrder, PostOrder };
     public class BinarySearchTreeNode<T> where T: IComparable<T>
     {
-        public int Value;
-        public BinarySearchTreeNode Parent;
-        public BinarySearchTreeNode Left;   // LL's prev
-        public BinarySearchTreeNode Right;  // LL's next
+        public T Value { get; set; }
+        public BinarySearchTreeNode<T> Parent;
+        public BinarySearchTreeNode<T> Left;   // LL's prev
+        public BinarySearchTreeNode<T> Right;  // LL's next
 
-        public BinarySearchTreeNode(int val)
+        public BinarySearchTreeNode(T val)
         {
             Value = val;
+            System.Console.WriteLine(Value);
         }
 
         public bool HasParent => Parent != null;
@@ -28,7 +29,7 @@ namespace DSBST.Containers
 
         public bool IsLeaf => !HasRight && !HasLeft;
 
-        public int CompareTo(BinarySearchTreeNode other)
+        public int CompareTo(BinarySearchTreeNode<T> other)
         {
             if (other == null)
                 return 1;
