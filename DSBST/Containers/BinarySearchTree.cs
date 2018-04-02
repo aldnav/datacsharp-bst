@@ -1,4 +1,19 @@
-﻿using System;
+﻿/**
+ * Binary Search Tree
+ * @author Aldrin A. Navarro
+ * 
+ * Methods/Properties:
+ *   Insert
+ *   Delete
+ *   Minimum
+ *   Maximum
+ *   Successor
+ *   Predecessor
+ *   Search
+ *   Print
+ */
+
+using System;
 using System.Collections.Generic;
 
 namespace DSBST.Containers
@@ -48,7 +63,7 @@ namespace DSBST.Containers
                 return true;
             }
 
-            if (Find(Root, value) != null)
+            if (Search(Root, value) != null)
             {
                 return false;
             }
@@ -56,7 +71,9 @@ namespace DSBST.Containers
             return true;
         }
 
-        public BinarySearchTreeNode<T> Find(BinarySearchTreeNode<T> node, T value)
+        public BinarySearchTreeNode<T> Search(T value) => Search(Root, value);
+
+        public BinarySearchTreeNode<T> Search(BinarySearchTreeNode<T> node, T value)
         {
             if (this.Root == null)
             {
@@ -73,7 +90,7 @@ namespace DSBST.Containers
                 // value is lesser, it must be on the left
                 if (node.HasLeft)
                 {
-                    return Find(node.Left, value);
+                    return Search(node.Left, value);
                 }
                 return null;
             }
@@ -82,7 +99,7 @@ namespace DSBST.Containers
                 // value is greater, it must be on the right
                 if (node.HasRight)
                 {
-                    return Find(node.Right, value);
+                    return Search(node.Right, value);
                 }
                 return null;
             }
@@ -172,6 +189,150 @@ namespace DSBST.Containers
                 }
                 yield return node;
             }
+        }
+
+        public bool Delete(T value)
+        {
+            if (Root == null)
+            {
+                // tree is empty. nothing to do here
+                return false;
+            }
+
+            if (Root.IsLeaf && Root.Value.CompareTo(value) == 0)
+            {
+                // node to remove is the root and is the only node in tree
+                Root = null;
+                return true;
+            }
+
+            var nodeToRemove = Search(value);
+            if (nodeToRemove == null)
+            {
+                // element not in tree
+                return false;
+            }
+
+            if (nodeToRemove.IsLeaf)
+            {
+                if (nodeToRemove.IsLeftChild)
+                {
+                    nodeToRemove.Parent.Left = null;
+                }
+                else if (nodeToRemove.IsRightChild)
+                {
+                    nodeToRemove.Parent.Right = null;
+                }
+                nodeToRemove.Parent = null;
+                return true;
+            }
+
+            // node has an only child
+            bool hasOneChildOnly = false;
+            if (nodeToRemove.HasLeft && !nodeToRemove.HasRight)
+            {
+                // if node has left child
+                if (!nodeToRemove.HasParent)
+                {
+                    Root = nodeToRemove.Left;
+                    nodeToRemove.Left.Parent = null;
+                }
+                else if (nodeToRemove.IsLeftChild)
+                {
+                    nodeToRemove.Parent.Left = nodeToRemove.Left;
+                    nodeToRemove.Left.Parent = nodeToRemove.Parent;
+                }
+                else if (nodeToRemove.IsRightChild) 
+                {
+                    nodeToRemove.Parent.Right = nodeToRemove.Left;
+                    nodeToRemove.Left.Parent = nodeToRemove.Parent;
+                }
+                hasOneChildOnly = true;
+            }
+            else if (nodeToRemove.HasRight && !nodeToRemove.HasLeft)
+            {
+                // if node has right child
+                if (!nodeToRemove.HasParent)
+                {
+                    Root = nodeToRemove.Right;
+                    nodeToRemove.Right.Parent = null;
+                }
+                else if (nodeToRemove.IsLeftChild)
+                {
+                    nodeToRemove.Parent.Left = nodeToRemove.Right;
+                    nodeToRemove.Right.Parent = nodeToRemove.Parent;
+                }
+                else if (nodeToRemove.IsRightChild)
+                {
+                    nodeToRemove.Parent.Right = nodeToRemove.Right;
+                    nodeToRemove.Right.Parent = nodeToRemove.Parent;
+                }
+                hasOneChildOnly = true;
+            }
+            if (hasOneChildOnly)
+            {
+                nodeToRemove = null;
+                return true;
+            }
+            
+            // both child is present; replace with successor
+            BinarySearchTreeNode<T> successor = Successor(nodeToRemove);
+            nodeToRemove.Value = successor.Value;
+            nodeToRemove.Right = null;
+            successor = null;
+
+            return true;
+        }
+
+        // Left-most leaf node
+        public BinarySearchTreeNode<T> Minimum(BinarySearchTreeNode<T> node)
+        {
+            if (node == null)
+                return null;
+            BinarySearchTreeNode<T> current = node;
+
+            while (current.HasLeft)
+            {
+                current = current.Left;
+            }
+            return current;
+        }
+
+        // Right-most leaf node
+        public BinarySearchTreeNode<T> Maximum(BinarySearchTreeNode<T> node)
+        {
+            if (node == null)
+                return null;
+            BinarySearchTreeNode<T> current = node;
+
+            while (current.HasRight)
+            {
+                current = current.Right;
+            }
+            return current;
+        }
+
+        // Minimum of right subtree
+        public BinarySearchTreeNode<T> Successor(BinarySearchTreeNode<T> node)
+        {
+            return Minimum(node.Right);
+        }
+
+        // Maximum of left subtree
+        public BinarySearchTreeNode<T> Predecessor(BinarySearchTreeNode<T> node)
+        {
+            return Maximum(node.Left);
+        }
+
+        public void Print() => Print(Traversal.PreOrder);
+
+        public void Print(Traversal traversal)
+        {
+            foreach (BinarySearchTreeNode<T> node in Traverse(traversal))
+            {
+                System.Console.Write(node.Value + " ");
+            }
+            System.Console.WriteLine();
         }
     }
 }
