@@ -34,30 +34,30 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelHeight = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.labelMaximum = new System.Windows.Forms.Label();
             this.labelMinimum = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelLevel = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelNodeMaximum = new System.Windows.Forms.Label();
+            this.labelNodeMinimum = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.labelNodeHeight = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelSelected = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelPre = new System.Windows.Forms.Label();
+            this.labelSuc = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.labelHeight = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.labelSuc = new System.Windows.Forms.Label();
-            this.labelPre = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labelSelected = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.labelNodeHeight = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.labelNodeMinimum = new System.Windows.Forms.Label();
-            this.labelNodeMaximum = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.labelLevel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,16 +65,14 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
-            this.panel1.AutoScrollMinSize = new System.Drawing.Size(0, 20);
+            this.panel1.AutoScrollMinSize = new System.Drawing.Size(20, 20);
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(176, 13);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(188, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(727, 500);
+            this.panel1.Size = new System.Drawing.Size(727, 525);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -129,6 +127,23 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tree info";
+            // 
+            // labelHeight
+            // 
+            this.labelHeight.AutoSize = true;
+            this.labelHeight.Location = new System.Drawing.Point(85, 56);
+            this.labelHeight.Name = "labelHeight";
+            this.labelHeight.Size = new System.Drawing.Size(0, 13);
+            this.labelHeight.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 56);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Height";
             // 
             // labelMaximum
             // 
@@ -187,6 +202,114 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Node info";
             // 
+            // labelLevel
+            // 
+            this.labelLevel.AutoSize = true;
+            this.labelLevel.Location = new System.Drawing.Point(85, 35);
+            this.labelLevel.Name = "labelLevel";
+            this.labelLevel.Size = new System.Drawing.Size(55, 13);
+            this.labelLevel.TabIndex = 13;
+            this.labelLevel.Text = "labelLevel";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 35);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Level";
+            // 
+            // labelNodeMaximum
+            // 
+            this.labelNodeMaximum.AutoSize = true;
+            this.labelNodeMaximum.Location = new System.Drawing.Point(85, 96);
+            this.labelNodeMaximum.Name = "labelNodeMaximum";
+            this.labelNodeMaximum.Size = new System.Drawing.Size(99, 13);
+            this.labelNodeMaximum.TabIndex = 11;
+            this.labelNodeMaximum.Text = "labelNodeMaximum";
+            // 
+            // labelNodeMinimum
+            // 
+            this.labelNodeMinimum.AutoSize = true;
+            this.labelNodeMinimum.Location = new System.Drawing.Point(85, 83);
+            this.labelNodeMinimum.Name = "labelNodeMinimum";
+            this.labelNodeMinimum.Size = new System.Drawing.Size(96, 13);
+            this.labelNodeMinimum.TabIndex = 10;
+            this.labelNodeMinimum.Text = "labelNodeMinimum";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Maximum";
+            // 
+            // labelNodeHeight
+            // 
+            this.labelNodeHeight.AutoSize = true;
+            this.labelNodeHeight.Location = new System.Drawing.Point(85, 112);
+            this.labelNodeHeight.Name = "labelNodeHeight";
+            this.labelNodeHeight.Size = new System.Drawing.Size(86, 13);
+            this.labelNodeHeight.TabIndex = 9;
+            this.labelNodeHeight.Text = "labelNodeHeight";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 81);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Minimum";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 112);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Height";
+            // 
+            // labelSelected
+            // 
+            this.labelSelected.AutoSize = true;
+            this.labelSelected.Location = new System.Drawing.Point(85, 18);
+            this.labelSelected.Name = "labelSelected";
+            this.labelSelected.Size = new System.Drawing.Size(71, 13);
+            this.labelSelected.TabIndex = 5;
+            this.labelSelected.Text = "labelSelected";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Selected";
+            // 
+            // labelPre
+            // 
+            this.labelPre.AutoSize = true;
+            this.labelPre.Location = new System.Drawing.Point(85, 66);
+            this.labelPre.Name = "labelPre";
+            this.labelPre.Size = new System.Drawing.Size(45, 13);
+            this.labelPre.TabIndex = 3;
+            this.labelPre.Text = "labelPre";
+            // 
+            // labelSuc
+            // 
+            this.labelSuc.AutoSize = true;
+            this.labelSuc.Location = new System.Drawing.Point(85, 49);
+            this.labelSuc.Name = "labelSuc";
+            this.labelSuc.Size = new System.Drawing.Size(48, 13);
+            this.labelSuc.TabIndex = 2;
+            this.labelSuc.Text = "labelSuc";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -205,23 +328,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Successor";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Height";
-            // 
-            // labelHeight
-            // 
-            this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(85, 56);
-            this.labelHeight.Name = "labelHeight";
-            this.labelHeight.Size = new System.Drawing.Size(0, 13);
-            this.labelHeight.TabIndex = 5;
-            // 
             // buttonClear
             // 
             this.buttonClear.Location = new System.Drawing.Point(95, 69);
@@ -231,60 +337,6 @@
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
-            // 
-            // labelSuc
-            // 
-            this.labelSuc.AutoSize = true;
-            this.labelSuc.Location = new System.Drawing.Point(85, 49);
-            this.labelSuc.Name = "labelSuc";
-            this.labelSuc.Size = new System.Drawing.Size(48, 13);
-            this.labelSuc.TabIndex = 2;
-            this.labelSuc.Text = "labelSuc";
-            // 
-            // labelPre
-            // 
-            this.labelPre.AutoSize = true;
-            this.labelPre.Location = new System.Drawing.Point(85, 66);
-            this.labelPre.Name = "labelPre";
-            this.labelPre.Size = new System.Drawing.Size(45, 13);
-            this.labelPre.TabIndex = 3;
-            this.labelPre.Text = "labelPre";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Selected";
-            // 
-            // labelSelected
-            // 
-            this.labelSelected.AutoSize = true;
-            this.labelSelected.Location = new System.Drawing.Point(85, 18);
-            this.labelSelected.Name = "labelSelected";
-            this.labelSelected.Size = new System.Drawing.Size(71, 13);
-            this.labelSelected.TabIndex = 5;
-            this.labelSelected.Text = "labelSelected";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 112);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Height";
-            // 
-            // labelNodeHeight
-            // 
-            this.labelNodeHeight.AutoSize = true;
-            this.labelNodeHeight.Location = new System.Drawing.Point(85, 112);
-            this.labelNodeHeight.Name = "labelNodeHeight";
-            this.labelNodeHeight.Size = new System.Drawing.Size(86, 13);
-            this.labelNodeHeight.TabIndex = 9;
-            this.labelNodeHeight.Text = "labelNodeHeight";
             // 
             // groupBox3
             // 
@@ -306,60 +358,6 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "* To select a node, use Search\n* Input can be single int value or comma-separated" +
     " int values";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Maximum";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 81);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 13);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Minimum";
-            // 
-            // labelNodeMinimum
-            // 
-            this.labelNodeMinimum.AutoSize = true;
-            this.labelNodeMinimum.Location = new System.Drawing.Point(85, 83);
-            this.labelNodeMinimum.Name = "labelNodeMinimum";
-            this.labelNodeMinimum.Size = new System.Drawing.Size(96, 13);
-            this.labelNodeMinimum.TabIndex = 10;
-            this.labelNodeMinimum.Text = "labelNodeMinimum";
-            // 
-            // labelNodeMaximum
-            // 
-            this.labelNodeMaximum.AutoSize = true;
-            this.labelNodeMaximum.Location = new System.Drawing.Point(85, 96);
-            this.labelNodeMaximum.Name = "labelNodeMaximum";
-            this.labelNodeMaximum.Size = new System.Drawing.Size(99, 13);
-            this.labelNodeMaximum.TabIndex = 11;
-            this.labelNodeMaximum.Text = "labelNodeMaximum";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 35);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Level";
-            // 
-            // labelLevel
-            // 
-            this.labelLevel.AutoSize = true;
-            this.labelLevel.Location = new System.Drawing.Point(85, 35);
-            this.labelLevel.Name = "labelLevel";
-            this.labelLevel.Size = new System.Drawing.Size(55, 13);
-            this.labelLevel.TabIndex = 13;
-            this.labelLevel.Text = "labelLevel";
             // 
             // BSTForm
             // 

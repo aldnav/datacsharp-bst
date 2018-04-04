@@ -35,6 +35,9 @@ namespace DSBST
                 tree.Insert(8);
                 selectedNode = tree.Root;
             }
+
+            panel1.AutoScroll = true;
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -130,7 +133,11 @@ namespace DSBST
             }
             catch (System.FormatException)
             {
-                MessageBox.Show("Input error", "Please check your input");
+                MessageBox.Show("Please check your input. Must be of int type.", "Input error");
+            }
+            catch (System.OverflowException)
+            {
+                MessageBox.Show("Value is too large or too small for an int", "Input error");
             }
             finally
             {
