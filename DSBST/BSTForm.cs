@@ -31,17 +31,10 @@ namespace DSBST
                 tree.Insert(6);
                 tree.Insert(9);
                 tree.Insert(4);
-                tree.Insert(10);
+                tree.Insert(10); 
                 tree.Insert(8);
                 selectedNode = tree.Root;
             }
-            //panel1.AutoScroll = false;
-            //panel1.VerticalScroll.Enabled = true;
-            //panel1.VerticalScroll.Visible = true;
-            //panel1.HorizontalScroll.Enabled = true;
-            //panel1.HorizontalScroll.Visible = true;
-            //panel1.AutoScroll = true;
-            //panel1.ResumeLayout(false);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
