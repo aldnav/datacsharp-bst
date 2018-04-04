@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSBST.Containers
 {
@@ -25,6 +26,9 @@ namespace DSBST.Containers
         public BinarySearchTreeNode<T> Parent;
         public BinarySearchTreeNode<T> Left;   // LL's prev
         public BinarySearchTreeNode<T> Right;  // LL's next
+
+        public float PointX;
+        public float PointY;
 
         public BinarySearchTreeNode(T val)
         {
@@ -43,6 +47,8 @@ namespace DSBST.Containers
 
         public bool IsLeaf => !HasRight && !HasLeft;
 
+        public IEnumerable<BinarySearchTreeNode<T>> Children { get { return new[] { Left, Right }.Where(x => x != null); } }
+
         public int CompareTo(BinarySearchTreeNode<T> other)
         {
             if (other == null)
@@ -54,6 +60,11 @@ namespace DSBST.Containers
     public class BinarySearchTree<T> where T: IComparable<T>
     {
         public BinarySearchTreeNode<T> Root;
+
+        public void Clear()
+        {
+            Root = null;
+        }
     
         public bool Insert(T value)
         {
@@ -191,7 +202,126 @@ namespace DSBST.Containers
             }
         }
 
+        public IEnumerable<BinarySearchTreeNode<T>> BFS(BinarySearchTreeNode<T> node, Func<BinarySearchTreeNode<T>, IEnumerable<BinarySearchTreeNode<T>>> children)
+        {
+            Queue<BinarySearchTreeNode<T>> q = new Queue<BinarySearchTreeNode<T>>();
+            q.Enqueue(node);
+            while(q.Count > 0)
+            {
+                BinarySearchTreeNode<T> current = q.Dequeue();
+                yield return current;
+                foreach(var child in children(current))
+                {
+                    q.Enqueue(child);
+                }
+            }
+        }
+
         public bool Delete(T value)
+        {
+            if (this.Root == null)
+            {
+                return false;
+            }
+
+            if (this.Root.Value.CompareTo(value) == 0 && this.Root.IsLeaf)
+            {
+                this.Root = null;
+                return true;
+            }
+
+            var nodeToRemove = this.Search(value);
+            if (nodeToRemove == null)
+            {
+                return false;
+            }
+
+            this.Delete(nodeToRemove);
+            return true;
+        }
+
+        private void Delete(BinarySearchTreeNode<T> node)
+        {
+            // if node hasn't children then just remove this node
+            if (node.IsLeaf)
+            {
+                if (node.IsLeftChild)
+                {
+                    node.Parent.Left = null;
+                }
+                else if (node.IsRightChild)
+                {
+                    node.Parent.Right = null;
+                }
+
+                node.Parent = null;
+                return;
+            }
+
+            // if node has only 1 child then replace node by child
+            if (node.HasLeft ^ node.HasRight)
+            {
+                if (!node.HasParent)
+                {
+                    if (!node.HasRight && node.HasLeft)
+                        Root = node.Left;
+                    else if (node.HasRight && !node.HasLeft)
+                        Root = node.Right;
+                    Root.Parent = null;
+                    return;
+                }
+
+                if (node.HasLeft)
+                {
+                    if (node.IsLeftChild)
+                    {
+                        node.Parent.Left = node.Left;
+                    }
+                    else
+                    {
+                        node.Parent.Right = node.Left;
+                    }
+
+                    node.Left.Parent = node.Parent;
+                }
+                else if (node.HasRight)
+                {
+                    if (node.IsLeftChild)
+                    {
+                        node.Parent.Left = node.Right;
+                    }
+                    else
+                    {
+                        node.Parent.Right = node.Right;
+                    }
+
+                    node.Right.Parent = node.Parent;
+                }
+
+                return;
+            }
+
+            // if node has both childs
+            var successor = Successor(node);
+            node.Value = successor.Value;
+            this.Delete(successor);
+
+            //if (!node.Right.HasLeft)
+            //{
+            //    node.Value = node.Right.Value;
+            //    node.Right = node.Right.Right;
+            //    node.Right.Parent = node;
+            //}
+            //else // node has both childs and right child has both childs
+            //{
+            //    var mostLeft = Successor(node.Right);
+            //    node.Value = mostLeft.Value;
+            //    this.Delete(mostLeft);
+            //}
+        }
+
+
+        public bool DeleteOld(T value)
         {
             if (Root == null)
             {
@@ -274,12 +404,26 @@ namespace DSBST.Containers
                 nodeToRemove = null;
                 return true;
             }
-            
+
             // both child is present; replace with successor
             BinarySearchTreeNode<T> successor = Successor(nodeToRemove);
-            nodeToRemove.Value = successor.Value;
-            nodeToRemove.Right = null;
-            successor = null;
+            
+            if (!nodeToRemove.HasParent)
+            {
+                successor.Left = Root.Left;
+                successor.Right = Root.Right;
+                Root = successor;
+            }
+
+            //if (nodeToRemove.IsLeftChild)
+            //{
+            //    if (successor.HasLeft)
+            //        successor.Left.Parent = nodeToRemove;
+            //    if (successor.HasRight)
+            //        successor.Right.Parent = nodeToRemove;
+            //}
+
+            nodeToRemove = null;
 
             return true;
         }
@@ -333,6 +477,64 @@ namespace DSBST.Containers
                 System.Console.Write(node.Value + " ");
             }
             System.Console.WriteLine();
+        }
+
+        public int Level(BinarySearchTreeNode<T> searchNode)
+        {
+            if (searchNode == null)
+                return -1;
+            int level = 1;
+            Queue<BinarySearchTreeNode<T>> q = new Queue<BinarySearchTreeNode<T>>();
+            q.Enqueue(Root);
+            q.Enqueue(null);
+            while (q.Count > 0)
+            {
+                BinarySearchTreeNode<T> current = q.Dequeue();
+                if (current == null)
+                {
+                    try
+                    {
+                        if (q.Peek() != null)
+                            q.Enqueue(null);
+                        ++level;
+                    }
+                    catch (Exception){}
+                }
+                else
+                {
+                    if (searchNode.CompareTo(current) == 0)
+                        break;
+                    if (current.HasLeft)
+                        q.Enqueue(current.Left);
+                    if (current.HasRight)
+                        q.Enqueue(current.Right);
+                }
+            }
+            return level;
+        }
+
+        public int Height(BinarySearchTreeNode<T> node)
+        {
+            var result = 0;
+
+            if (node != null)
+            {
+                result = Math.Max(Height(node.Left), Height(node.Right)) + 1;
+            }
+
+            return result;
+        }
+
+        public int NodeCount {
+            get
+            {
+                int count = 0;
+                foreach (BinarySearchTreeNode<T> node in Traverse())
+                {
+                    ++count;
+                }
+                return count;
+            }
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using DSBST.Containers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DSBST
 {
@@ -11,6 +7,12 @@ namespace DSBST
     {
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new BSTForm());
+
+
+            // For testing only
             //BinarySearchTree<int> tree = new BinarySearchTree<int>();
 
             //tree.Insert(5);
@@ -19,6 +21,24 @@ namespace DSBST
             //tree.Insert(1);
             //tree.Insert(9);
             //tree.Insert(6);
+
+            //tree.Delete(5);
+            //tree.Print();
+
+            //int level, _level = 0;
+            //int step = 1;
+
+            //foreach (var node in tree.BFS(tree.Root, node => node.Children))
+            //{
+            //    level = tree.Level(node);
+            //    ++step;
+            //    if (_level != level)
+            //    {
+            //        step = 1;
+            //        _level = level;
+            //    }
+            //    System.Console.WriteLine(string.Format("{0} : {1} : {2}", node.Value, level, node.HasParent && node.IsLeftChild ? -1: 1));
+            //}
 
             //System.Console.WriteLine("Pre order");
             //tree.Print();
@@ -57,22 +77,24 @@ namespace DSBST
             //tree.Delete(tree.Root.Value);
             //tree.Print();
 
-            BinarySearchTree<int> tree2 = new BinarySearchTree<int>();
-            tree2.Insert(6);
-            tree2.Insert(7);
-            tree2.Insert(9);
-            tree2.Print();
-            System.Console.WriteLine("Removing root");
-            tree2.Delete(tree2.Root.Value);
-            tree2.Print();
-            System.Console.WriteLine("Removing root");
-            tree2.Delete(tree2.Root.Value);
-            tree2.Print();
-            System.Console.WriteLine("Removing root");
-            tree2.Delete(tree2.Root.Value);
-            tree2.Print();
+            //BinarySearchTree<int> tree2 = new BinarySearchTree<int>();
+            //tree2.Insert(6);
+            //tree2.Insert(7);
+            //tree2.Insert(9);
+            //tree2.Print();
+            //System.Console.WriteLine("Removing root");
+            //tree2.Delete(tree2.Root.Value);
+            //tree2.Print();
+            //System.Console.WriteLine("Removing root");
+            //tree2.Delete(tree2.Root.Value);
+            //tree2.Print();
+            //System.Console.WriteLine("Removing root");
+            //tree2.Delete(tree2.Root.Value);
+            //tree2.Print();
 
-            System.Console.Read();
+            //System.Console.Read();
+
+
         }
     }
 }
