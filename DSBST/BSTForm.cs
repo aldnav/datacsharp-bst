@@ -133,8 +133,13 @@ namespace DSBST
             }
 
             buffer = tempBuffer;
+            Image img = pictureBox1.Image;
             pictureBox1.Image = buffer;
             pictureBox1.Invalidate();
+            if (img != null)
+            {
+                img.Dispose();
+            }
 
             // set scroll pos
             if (selectedNode != null)
