@@ -16,7 +16,12 @@ namespace DSBST
     {
         BinarySearchTree<int> tree = new BinarySearchTree<int>();
         BinarySearchTreeNode<int> selectedNode;
+        static Font font = new Font("Tahoma", 10);
+        PointF drawPoint = new PointF(10.0F, 10.0F);
         private Bitmap buffer = new Bitmap(100, 100);
+        Pen blackPen = new Pen(Color.Black, 1);
+        int padding = (int)font.Size / 2;
+
         public BSTForm()
         {
             InitializeComponent();
@@ -58,8 +63,6 @@ namespace DSBST
 
             using (Graphics g = Graphics.FromImage(tempBuffer))
             {
-                Font font = new Font("Tahoma", 10);
-                PointF drawPoint = new PointF(10.0F, 10.0F);
                 int level, _level = 0;
                 int step = 1;
                 float fx = pictureBox1.Width / 2;
@@ -88,8 +91,6 @@ namespace DSBST
                     if (node.HasParent)
                     {
                         // draw edge
-                        int padding = (int)font.Size / 2;
-                        Pen blackPen = new Pen(Color.Black, 1);
                         Point point1 = new Point((int)node.PointX, (int)node.PointY + padding);
                         Point point2 = new Point((int)node.Parent.PointX + padding, (int)node.Parent.PointY + (int)font.Size + padding + 5);
                         g.DrawLine(blackPen, point1, point2);
