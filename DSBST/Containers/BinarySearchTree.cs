@@ -479,6 +479,27 @@ namespace DSBST.Containers
             System.Console.WriteLine();
         }
 
+        public String Display(Traversal traversal, Boolean isBFS)
+        {
+            String display = "";
+            if (isBFS)
+            {
+                foreach (var node in BFS(Root, node => node.Children))
+                {
+                    if (node == null)
+                        break;
+                    display += node.Value + " ";
+                }
+                return display;
+            }
+
+            foreach (BinarySearchTreeNode<T> node in Traverse(traversal))
+            {
+                display += node.Value + " ";
+            }
+            return display;
+        }
+
         public int Level(BinarySearchTreeNode<T> searchNode)
         {
             if (searchNode == null)

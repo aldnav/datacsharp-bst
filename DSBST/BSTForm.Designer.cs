@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -58,12 +59,16 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.radioButtonPreOrder = new System.Windows.Forms.RadioButton();
+            this.radioButtonInOrder = new System.Windows.Forms.RadioButton();
+            this.radioButtonPostOrder = new System.Windows.Forms.RadioButton();
+            this.radioButtonBFS = new System.Windows.Forms.RadioButton();
+            this.buttonTraverse = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,6 +82,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(727, 525);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(-1, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1920, 1920);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // textBoxInput
             // 
@@ -123,9 +137,9 @@
             this.groupBox1.Controls.Add(this.labelMinimum);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 99);
+            this.groupBox1.Location = new System.Drawing.Point(13, 181);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(157, 100);
+            this.groupBox1.Size = new System.Drawing.Size(157, 80);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tree info";
@@ -197,7 +211,7 @@
             this.groupBox2.Controls.Add(this.labelSuc);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(13, 206);
+            this.groupBox2.Location = new System.Drawing.Point(13, 268);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(157, 132);
             this.groupBox2.TabIndex = 6;
@@ -343,7 +357,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.richTextBox1);
-            this.groupBox3.Location = new System.Drawing.Point(13, 344);
+            this.groupBox3.Location = new System.Drawing.Point(13, 406);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(156, 101);
             this.groupBox3.TabIndex = 8;
@@ -361,20 +375,72 @@
             this.richTextBox1.Text = "* To select a node, use Search\n* Input can be single int value or comma-separated" +
     " int values";
             // 
-            // pictureBox1
+            // radioButtonPreOrder
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(-1, -1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1920, 1920);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.radioButtonPreOrder.AutoSize = true;
+            this.radioButtonPreOrder.Checked = true;
+            this.radioButtonPreOrder.Location = new System.Drawing.Point(15, 98);
+            this.radioButtonPreOrder.Name = "radioButtonPreOrder";
+            this.radioButtonPreOrder.Size = new System.Drawing.Size(70, 17);
+            this.radioButtonPreOrder.TabIndex = 9;
+            this.radioButtonPreOrder.TabStop = true;
+            this.radioButtonPreOrder.Text = "Pre Order";
+            this.radioButtonPreOrder.UseVisualStyleBackColor = true;
+            this.radioButtonPreOrder.CheckedChanged += new System.EventHandler(this.radioButtonPreOrder_CheckedChanged);
+            // 
+            // radioButtonInOrder
+            // 
+            this.radioButtonInOrder.AutoSize = true;
+            this.radioButtonInOrder.Location = new System.Drawing.Point(15, 121);
+            this.radioButtonInOrder.Name = "radioButtonInOrder";
+            this.radioButtonInOrder.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonInOrder.TabIndex = 10;
+            this.radioButtonInOrder.Text = "In Order";
+            this.radioButtonInOrder.UseVisualStyleBackColor = true;
+            this.radioButtonInOrder.CheckedChanged += new System.EventHandler(this.radioButtonInOrder_CheckedChanged);
+            // 
+            // radioButtonPostOrder
+            // 
+            this.radioButtonPostOrder.AutoSize = true;
+            this.radioButtonPostOrder.Location = new System.Drawing.Point(95, 98);
+            this.radioButtonPostOrder.Name = "radioButtonPostOrder";
+            this.radioButtonPostOrder.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonPostOrder.TabIndex = 11;
+            this.radioButtonPostOrder.Text = "Post Order";
+            this.radioButtonPostOrder.UseVisualStyleBackColor = true;
+            this.radioButtonPostOrder.CheckedChanged += new System.EventHandler(this.radioButtonPostOrder_CheckedChanged);
+            // 
+            // radioButtonBFS
+            // 
+            this.radioButtonBFS.AutoSize = true;
+            this.radioButtonBFS.Location = new System.Drawing.Point(95, 121);
+            this.radioButtonBFS.Name = "radioButtonBFS";
+            this.radioButtonBFS.Size = new System.Drawing.Size(45, 17);
+            this.radioButtonBFS.TabIndex = 12;
+            this.radioButtonBFS.Text = "BFS";
+            this.radioButtonBFS.UseVisualStyleBackColor = true;
+            this.radioButtonBFS.CheckedChanged += new System.EventHandler(this.radioButtonBFS_CheckedChanged);
+            // 
+            // buttonTraverse
+            // 
+            this.buttonTraverse.Location = new System.Drawing.Point(15, 145);
+            this.buttonTraverse.Name = "buttonTraverse";
+            this.buttonTraverse.Size = new System.Drawing.Size(155, 23);
+            this.buttonTraverse.TabIndex = 13;
+            this.buttonTraverse.Text = "Traverse";
+            this.buttonTraverse.UseVisualStyleBackColor = true;
+            this.buttonTraverse.Click += new System.EventHandler(this.buttonTraverse_Click);
             // 
             // BSTForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 525);
+            this.Controls.Add(this.buttonTraverse);
+            this.Controls.Add(this.radioButtonBFS);
+            this.Controls.Add(this.radioButtonPostOrder);
+            this.Controls.Add(this.radioButtonInOrder);
+            this.Controls.Add(this.radioButtonPreOrder);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.groupBox2);
@@ -391,12 +457,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BSTForm - Aldrin Navarro";
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,5 +501,10 @@
         private System.Windows.Forms.Label labelLevel;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RadioButton radioButtonPreOrder;
+        private System.Windows.Forms.RadioButton radioButtonInOrder;
+        private System.Windows.Forms.RadioButton radioButtonPostOrder;
+        private System.Windows.Forms.RadioButton radioButtonBFS;
+        private System.Windows.Forms.Button buttonTraverse;
     }
 }

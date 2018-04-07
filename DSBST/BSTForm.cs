@@ -21,6 +21,8 @@ namespace DSBST
         private Bitmap buffer = new Bitmap(100, 100);
         Pen blackPen = new Pen(Color.Black, 1);
         int padding = (int)font.Size / 2;
+        Traversal traversal = Traversal.PreOrder;
+        Boolean isBFS = false;
 
         public BSTForm()
         {
@@ -252,6 +254,39 @@ namespace DSBST
                 textBoxInput.Clear();
                 textBoxInput.Focus();
             }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButtonPreOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            traversal = Traversal.PreOrder;
+            isBFS = false;
+        }
+
+        private void radioButtonInOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            traversal = Traversal.InOrder;
+            isBFS = false;
+        }
+
+        private void radioButtonPostOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            traversal = Traversal.PostOrder;
+            isBFS = false;
+        }
+
+        private void radioButtonBFS_CheckedChanged(object sender, EventArgs e)
+        {
+            isBFS = true;
+        }
+
+        private void buttonTraverse_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(tree.Display(traversal, isBFS), "Traverse");
         }
     }
 }
