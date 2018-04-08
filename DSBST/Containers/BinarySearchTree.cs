@@ -1,6 +1,9 @@
 ﻿/**
  * Binary Search Tree
+ * 
+ * Implementation of the BST
  * @author Aldrin A. Navarro
+ * @sn 2011-36650
  * 
  * Methods/Properties:
  *   Insert
@@ -11,6 +14,11 @@
  *   Predecessor
  *   Search
  *   Print
+ *   
+ * Extras added:
+ *   BFS
+ *   Height
+ *   Level
  */
 
 using System;
@@ -305,129 +313,8 @@ namespace DSBST.Containers
             var successor = Successor(node);
             node.Value = successor.Value;
             this.Delete(successor);
-
-            //if (!node.Right.HasLeft)
-            //{
-            //    node.Value = node.Right.Value;
-            //    node.Right = node.Right.Right;
-            //    node.Right.Parent = node;
-            //}
-            //else // node has both childs and right child has both childs
-            //{
-            //    var mostLeft = Successor(node.Right);
-            //    node.Value = mostLeft.Value;
-            //    this.Delete(mostLeft);
-            //}
         }
-
-
-        public bool DeleteOld(T value)
-        {
-            if (Root == null)
-            {
-                // tree is empty. nothing to do here
-                return false;
-            }
-
-            if (Root.IsLeaf && Root.Value.CompareTo(value) == 0)
-            {
-                // node to remove is the root and is the only node in tree
-                Root = null;
-                return true;
-            }
-
-            var nodeToRemove = Search(value);
-            if (nodeToRemove == null)
-            {
-                // element not in tree
-                return false;
-            }
-
-            if (nodeToRemove.IsLeaf)
-            {
-                if (nodeToRemove.IsLeftChild)
-                {
-                    nodeToRemove.Parent.Left = null;
-                }
-                else if (nodeToRemove.IsRightChild)
-                {
-                    nodeToRemove.Parent.Right = null;
-                }
-                nodeToRemove.Parent = null;
-                return true;
-            }
-
-            // node has an only child
-            bool hasOneChildOnly = false;
-            if (nodeToRemove.HasLeft && !nodeToRemove.HasRight)
-            {
-                // if node has left child
-                if (!nodeToRemove.HasParent)
-                {
-                    Root = nodeToRemove.Left;
-                    nodeToRemove.Left.Parent = null;
-                }
-                else if (nodeToRemove.IsLeftChild)
-                {
-                    nodeToRemove.Parent.Left = nodeToRemove.Left;
-                    nodeToRemove.Left.Parent = nodeToRemove.Parent;
-                }
-                else if (nodeToRemove.IsRightChild) 
-                {
-                    nodeToRemove.Parent.Right = nodeToRemove.Left;
-                    nodeToRemove.Left.Parent = nodeToRemove.Parent;
-                }
-                hasOneChildOnly = true;
-            }
-            else if (nodeToRemove.HasRight && !nodeToRemove.HasLeft)
-            {
-                // if node has right child
-                if (!nodeToRemove.HasParent)
-                {
-                    Root = nodeToRemove.Right;
-                    nodeToRemove.Right.Parent = null;
-                }
-                else if (nodeToRemove.IsLeftChild)
-                {
-                    nodeToRemove.Parent.Left = nodeToRemove.Right;
-                    nodeToRemove.Right.Parent = nodeToRemove.Parent;
-                }
-                else if (nodeToRemove.IsRightChild)
-                {
-                    nodeToRemove.Parent.Right = nodeToRemove.Right;
-                    nodeToRemove.Right.Parent = nodeToRemove.Parent;
-                }
-                hasOneChildOnly = true;
-            }
-            if (hasOneChildOnly)
-            {
-                nodeToRemove = null;
-                return true;
-            }
-
-            // both child is present; replace with successor
-            BinarySearchTreeNode<T> successor = Successor(nodeToRemove);
-            
-            if (!nodeToRemove.HasParent)
-            {
-                successor.Left = Root.Left;
-                successor.Right = Root.Right;
-                Root = successor;
-            }
-
-            //if (nodeToRemove.IsLeftChild)
-            //{
-            //    if (successor.HasLeft)
-            //        successor.Left.Parent = nodeToRemove;
-            //    if (successor.HasRight)
-            //        successor.Right.Parent = nodeToRemove;
-            //}
-
-            nodeToRemove = null;
-
-            return true;
-        }
-
+        
         // Left-most leaf node
         public BinarySearchTreeNode<T> Minimum(BinarySearchTreeNode<T> node)
         {
@@ -468,7 +355,7 @@ namespace DSBST.Containers
             return Maximum(node.Left);
         }
 
-        public void Print() => Print(Traversal.PreOrder);
+        public void Print() => Print(Traversal.InOrder);
 
         public void Print(Traversal traversal)
         {
@@ -478,7 +365,10 @@ namespace DSBST.Containers
             }
             System.Console.WriteLine();
         }
-
+        
+        /**
+         * Same as Print but returns string
+         */
         public String Display(Traversal traversal, Boolean isBFS)
         {
             String display = "";
@@ -546,6 +436,9 @@ namespace DSBST.Containers
             return result;
         }
 
+        /**
+         * Helper function to get the total number of nodes
+         */
         public int NodeCount {
             get
             {

@@ -23,19 +23,14 @@ namespace DSBST
         {
             InitializeComponent();
 
-            bool Debug = true;
+            bool Debug = false;
             if (Debug)
             {
-                tree.Insert(20);
-                tree.Insert(5);
-                tree.Insert(2);
-                tree.Insert(1);
-                tree.Insert(7);
-                tree.Insert(6);
-                tree.Insert(9);
-                tree.Insert(4);
-                tree.Insert(10); 
-                tree.Insert(8);
+                tree.Insert(63);
+                tree.Insert(38);
+                tree.Insert(97);
+                tree.Insert(66);
+                tree.Insert(31);
                 selectedNode = tree.Root;
             }
 
@@ -200,12 +195,18 @@ namespace DSBST
                     }
                 }
             }
-            catch (System.FormatException)
+            catch (Exception ex) when (
+                ex is System.FormatException ||
+                ex is System.NullReferenceException)
             {
                 MessageBox.Show("Input error", "Please check your input");
             }
             finally
             {
+                if (tree.Root == null)
+                {
+                    selectedNode = null;
+                }
                 Draw();
                 textBoxInput.Clear();
                 textBoxInput.Focus();
@@ -281,6 +282,11 @@ namespace DSBST
 
         private void buttonTraverse_Click(object sender, EventArgs e)
         {
+            if (tree.Root == null)
+            {
+                MessageBox.Show("Tree is empty", "Traverse");
+                return;
+            }
             MessageBox.Show(tree.Display(traversal, isBFS), "Traverse");
         }
     }
